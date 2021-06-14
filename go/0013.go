@@ -1,6 +1,6 @@
 package main
 
-var toInt = map[byte]int{
+var integer = map[byte]int{
 	'I': 1,
 	'V': 5,
 	'X': 10,
@@ -12,10 +12,10 @@ var toInt = map[byte]int{
 
 func romanToInt(s string) int {
 	last := len(s) - 1
-	sum := toInt[s[last]]
+	sum := integer[s[last]]
 	for i := last; i > 0; i-- {
-		left := toInt[s[i-1]]
-		if toInt[s[i]] > left {
+		left := integer[s[i-1]]
+		if integer[s[i]] > left {
 			sum -= left
 		} else {
 			sum += left
