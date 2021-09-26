@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Time: O(max(len(a), len(b)))
 func addBinary(a string, b string) string {
 	if len(a) < len(b) {
 		a, b = b, a
