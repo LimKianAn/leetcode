@@ -15,7 +15,6 @@ func coinChange(coins []int, amount int) int {
 		}
 	}
 
-	log.Println(dp)
 	if dp[amount] > amount {
 		return -1
 	}
