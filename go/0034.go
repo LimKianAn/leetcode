@@ -18,7 +18,7 @@ func first(nums []int, target int) int {
 				return mid
 			}
 			r = mid - 1
-		} else if nums[mid] > target {
+		} else if target < nums[mid] {
 			r = mid - 1
 		} else {
 			l = mid + 1

@@ -38,7 +38,7 @@ func (c *counts) Len() int {
 }
 
 func (c *counts) Less(i, j int) bool {
-	return (*c)[i].count > (*c)[j].count
+	return (*c)[i].count > (*c)[j].count // max heap is needed
 }
 
 func (c *counts) Pop() interface{} {

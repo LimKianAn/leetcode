@@ -12,7 +12,7 @@ func numSubarrayProductLessThanK(nums []int, k int) (n int) {
 			prod /= nums[start]
 			start++
 		}
-		n += end - start + 1
+		n += end - start + 1 // e.g. start = 0, end = 2, the subarrays would be [0, 1, 2], [1,2], [2]
 	}
 	return
 }

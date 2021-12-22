@@ -1,16 +1,18 @@
 package main
 
 func sortColors(nums []int) {
-	i0, i1 := 0, 0 // i0 := index for zero
+	zero, zeroAndOne := 0, 0 // zero := counter for zero, zeroAndOne := counter for zero and one
 	for i, v := range nums {
 		nums[i] = 2
+
 		if v <= 1 {
-			nums[i1] = 1
-			i1++
+			nums[zeroAndOne] = 1
+			zeroAndOne++
 		}
+
 		if v == 0 {
-			nums[i0] = 0
-			i0++
+			nums[zero] = 0
+			zero++
 		}
 	}
 }

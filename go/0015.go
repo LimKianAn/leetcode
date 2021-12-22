@@ -4,22 +4,23 @@ import "sort"
 
 func threeSum(nums []int) (a [][]int) { // a := answer
 	sort.Ints(nums)
-	len := len(nums)
+	N := len(nums)
 outer:
-	for i := 1; i < len-1; i++ { // in the range (first, last)
-		l, r := 0, len-1 // left, right
-		if i > 1 && nums[i] == nums[i-1] {
-			l = i - 1
+	for i := 1; i < N-1; i++ { // in the range (first, last)
+		l, r := 0, N-1 // left, right
+		if nums[i] == nums[i-1] {
+			l = i - 1 // the possible solution with nums[i-1] has been evaluated
 		}
-		for l < i && r > i {
+
+		for l < i && i < r {
 			if nums[l] > 0 {
 				continue outer // sum of positive ints != 0
 			}
-			if l > 0 && nums[l] == nums[l-1] {
+			if l > 0 && nums[l-1] == nums[l] { // l might be zero
 				l++
 				continue
 			}
-			if r < len-1 && nums[r] == nums[r+1] {
+			if r < N-1 && nums[r] == nums[r+1] { // r might be N-1
 				r--
 				continue
 			}

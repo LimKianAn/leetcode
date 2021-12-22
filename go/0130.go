@@ -1,17 +1,17 @@
 package main
 
 var dir = [][]int{
-	{1, 0},
-	{-1, 0},
-	{0, 1},
-	{0, -1},
+	{ 1,  0},
+	{-1,  0},
+	{ 0,  1},
+	{ 0, -1},
 }
 
 func solve(board [][]byte) {
 	for i := range board {
 		for j := range board[i] {
 			if isOnBorder(board, i, j) && board[i][j] == 'O' {
-				replaceO(board, i, j)
+				replaceO(board, i, j) // replacing the whole area on the border
 			}
 		}
 	}
@@ -46,7 +46,7 @@ func replaceO(board [][]byte, i, j int) {
 		return
 	}
 	if board[i][j] == 'O' {
-		board[i][j] = '0'
+		board[i][j] = '0' // replaced with some other symbol
 		for k := range dir {
 			replaceO(board, i+dir[k][0], j+dir[k][1])
 		}

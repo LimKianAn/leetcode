@@ -23,7 +23,7 @@ func wiggleMaxLength(nums []int) int {
 }
 
 func isAlternating(last, now int) bool {
-	return last >= 0 && now < 0 || last <= 0 && now > 0 // `=` is for `0,0,1`
+	return last >= 0 && now < 0 || last <= 0 && now > 0 // "=" is for [3,3,3,2,5]
 }
 
 func main() {

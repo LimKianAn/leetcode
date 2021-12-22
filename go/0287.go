@@ -3,7 +3,7 @@ package main
 import "log"
 
 func findDuplicate(nums []int) int {
-	slow, fast := nums[0], nums[nums[0]]
+	slow, fast := nums[0], nums[nums[0]] // `fast` is already in the next position
 	for slow != fast {
 		slow, fast = nums[slow], nums[nums[fast]]
 	}

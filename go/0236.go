@@ -7,6 +7,7 @@ type TreeNode struct {
 }
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	// root == p || root == q. We need a way to signal that one of the nodes is on this sub-tree identified by root.
 	if root == nil || root == p || root == q {
 		return root
 	}
@@ -14,7 +15,7 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	r := lowestCommonAncestor(root.Right, p, q)
 	if l != nil {
 		if r != nil {
-			// onc on the left, the other one on the right
+			// one on the left, the other one on the right
 			return root
 		}
 		return l

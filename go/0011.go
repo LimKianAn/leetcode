@@ -3,7 +3,7 @@ package main
 func maxArea(height []int) int {
 	max := 0
 	for l, r := 0, len(height)-1; l < r; { // left, right
-		h := 0 // height
+		h := 0     // height
 		w := r - l // width
 		if height[l] < height[r] {
 			h = height[l]
@@ -12,9 +12,14 @@ func maxArea(height []int) int {
 			h = height[r]
 			r--
 		}
-		if tmp := w * h; tmp > max {
-			max = tmp
-		}
+		max = Max(max, w*h)
 	}
 	return max
+}
+
+func Max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }

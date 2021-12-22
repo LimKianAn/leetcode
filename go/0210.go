@@ -10,11 +10,11 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 		ccAfter[pr] = append(ccAfter[pr], c)
 	}
 
-	prClearedCC := prerequisiteClearedCourses(numPr)
+	prClearedCC := prerequisiteClearedCourses(numPr) // courses which can be taken freely
 	for i := 0; i < len(prClearedCC); i++ { // prClearedCC grows; for-range doesn't grow
 		cc := ccAfter[prClearedCC[i]]
 		for _, c := range cc {
-			if numPr[c]--; numPr[c] == 0 {
+			if numPr[c]--; numPr[c] == 0 { // one of the prerequisite has been taken, but there might be still more prerequisites
 				prClearedCC = append(prClearedCC, c)
 			}
 		}

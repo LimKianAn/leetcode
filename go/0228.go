@@ -7,15 +7,13 @@ import (
 
 func summaryRanges(nums []int) (ss []string) {
 	for start := 0; start < len(nums); {
-		last := lastOfRange(nums, start)
-
 		s := strconv.Itoa(nums[start])
+		last := lastOfRange(nums, start)
 		if last != start {
 			s += "->" + strconv.Itoa(nums[last])
 		}
 		ss = append(ss, s)
-
-		start = last + 1
+		start = last + 1 // after the gap
 	}
 	return
 }

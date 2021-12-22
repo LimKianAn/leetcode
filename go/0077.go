@@ -1,20 +1,28 @@
 package main
 
 func combine(n int, k int) (result [][]int) {
-	do(&result, n, k, 1, []int{})
+	var f func(head int, memo []int)
+	f = func(head int, memo []int) {
+		if len(memo) == k {
+			result = append(result, copied(memo))
+			return
+		}
+
+		for i := head; i <= n; i++ {
+			f(i+1, append(memo, i))
+		}
+	}
+	
+
 	return
 }
 
-func do(result *[][]int, n, k, head int, memo []int) {
-	if len(memo) == k {
-		alias := make([]int, k)
-		copy(alias, memo)
-		*result = append(*result, alias)
-		return
-	}
+func copied(ii []int) []int {
+	alias := make([]int, len(ii))
+	copy(alias, ii)
+	return alias
+}
 
-	for i := head; i <= n-(k-len(memo)-1); i++ {
-		do(result, n, k, i+1, append(memo, i))
-	}
-	return
+func main() {
+	combine(5, 2)
 }

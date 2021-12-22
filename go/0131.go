@@ -1,24 +1,25 @@
 package main
 
-// time: n:=len(s), O(n*2^n)
-// space: O(n)
+import "log"
+
 func partition(s string) (a [][]string) {
-	var dfs func(string, int, []string)
-	dfs = func(s string, i int, now []string) {
-		if i == len(s) {
-			a = append(a, copied(now))
+	var dfs func(int, []string)
+	dfs = func(start int, strings []string) {
+		if start == len(s) { // exceeding the upper bound
+			log.Println(copied(strings))
+			a = append(a, copied(strings))
 			return
 		}
 
-		for j := i; j < len(s); j++ {
-			sub := s[i : j+1]
+		for j := start; j < len(s); j++ {
+			sub := s[start : j+1]
 			if isPalindrome(sub) {
-				dfs(s, j+1, append(now, sub))
+				dfs(j+1, append(strings, sub)) // further evaluating
 			}
 		}
 	}
 
-	dfs(s, 0, []string{})
+	dfs(0, []string{})
 	return
 }
 
@@ -29,7 +30,7 @@ func copied(s []string) []string {
 }
 
 func isPalindrome(s string) bool {
-	for i, j := 0, len(s); i < j; {
+	for i, j := 0, len(s)-1; i < j; {
 		if s[i] != s[j] {
 			return false
 		}
@@ -37,4 +38,8 @@ func isPalindrome(s string) bool {
 		j--
 	}
 	return true
+}
+
+func main() {
+	partition("aab")
 }

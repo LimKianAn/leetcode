@@ -20,7 +20,7 @@ func combinationSum(candidates []int, target int) [][]int {
 		}
 
 		for i := index; i < len(candidates); i++ {
-			f(append(combi, candidates[i]), subT-candidates[i], i)
+			f(append(combi, candidates[i]), subT-candidates[i], i) // still i, since it can be reused
 		}
 	}
 
@@ -30,7 +30,7 @@ func combinationSum(candidates []int, target int) [][]int {
 }
 
 func copied(a []int) []int {
-	tmp := make([]int, len(a))
+	tmp := make([]int, len(a)) // size must be given
 	copy(tmp, a)
 	return tmp
 }

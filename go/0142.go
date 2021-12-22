@@ -11,7 +11,7 @@ func detectCycle(head *ListNode) *ListNode {
 		fast = fast.Next.Next
 		slow = slow.Next
 		if fast == slow {
-			for head != slow {
+			for head != slow { // starting from `head` again
 				head = head.Next
 				slow = slow.Next
 			}

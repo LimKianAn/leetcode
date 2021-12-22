@@ -14,8 +14,7 @@ func (this *MyStack) Push(x int) {
 
 func (this *MyStack) Pop() (i int) {
 	i = this.Top()
-	a := this.a
-	this.a = a[:len(a)-1]
+	this.a = this.a[:len(this.a)-1]
 	return
 }
 

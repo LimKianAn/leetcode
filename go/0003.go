@@ -9,7 +9,7 @@ func lengthOfLongestSubstring(s string) (n int) {
 				start = i + 1 // starts from the rune right after the one which has already occurred
 			}
 		}
-		index[r] = end
+		index[r] = end          // the latest occurrance
 		n = max(n, end-start+1) // length = difference+1
 	}
 	return

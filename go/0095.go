@@ -12,7 +12,7 @@ func generateTrees(n int) []*TreeNode {
 
 func generateTreesBetween(start, end int) []*TreeNode {
 	if start > end {
-		return []*TreeNode{nil}
+		return []*TreeNode{nil} // nil is required here for the null node
 	}
 
 	trees := []*TreeNode{}

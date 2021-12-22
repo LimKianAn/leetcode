@@ -4,10 +4,9 @@ import "log"
 
 func coinChange(coins []int, amount int) int {
 	dp := make([]int, amount+1)
-	dp[0] = 0
 
 	for i := 1; i <= amount; i++ {
-		dp[i] = amount + 1
+		dp[i] = amount + 1 // for the first comparison
 		for _, coin := range coins {
 			if coin <= i {
 				dp[i] = min(dp[i], dp[i-coin]+1)
@@ -15,7 +14,7 @@ func coinChange(coins []int, amount int) int {
 		}
 	}
 
-	if dp[amount] > amount {
+	if dp[amount] > amount { // when the above `amount+1` comes through
 		return -1
 	}
 

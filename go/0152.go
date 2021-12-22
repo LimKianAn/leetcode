@@ -6,7 +6,7 @@ func maxProduct(nums []int) (product int) {
 
 	for i := range nums {
 		if nums[i] < 0 {
-			maximum, minimum = minimum, maximum
+			maximum, minimum = minimum, maximum // prepares for the comparison below
 		}
 
 		maximum = max(nums[i], nums[i]*maximum)

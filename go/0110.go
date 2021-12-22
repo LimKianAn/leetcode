@@ -26,7 +26,7 @@ func height(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	return max(height(root.Left), height(root.Right)) + 1
+	return max(height(root.Left), height(root.Right)) + 1 // plus the height of the root, which is one
 }
 
 func max(a, b int) int {

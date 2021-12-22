@@ -7,12 +7,12 @@ func merge(intervals [][]int) [][]int {
 	Intervals(intervals).quickSort(0, len(intervals)-1)
 	a := [][]int{intervals[0]} // a := answer
 	i := 0
-	for _, v := range intervals {
-		if now := a[i]; v[0] > now[1] {
-			a = append(a, v)
+	for _, interval := range intervals {
+		if curInterval := a[i]; curInterval[1] < interval[0] { // not overlapping
+			a = append(a, interval)
 			i++
 		} else {
-			now[1] = max(now[1], v[1])
+			curInterval[1] = max(curInterval[1], interval[1]) // extending
 		}
 	}
 	return a
@@ -21,19 +21,21 @@ func merge(intervals [][]int) [][]int {
 type Intervals [][]int
 
 func (a Intervals) less(index, pivot int) bool {
-	return a[index][0] < a[pivot][0]
+	return a[index][0] < a[pivot][0] // comparing the start of an interval
 }
 
-func (a Intervals) partition(l, r int) int {
-	i := l - 1
-	for j := l; j < r; j++ {
-		if a.less(j, r) {
-			i++
-			a.swap(i, j)
+// max is chosen to be pivot
+func (a Intervals) partition(min, max int) int {
+	curSmaller := min - 1
+	for index := min; index < max; index++ {
+		if a.less(index, max) {
+			curSmaller++
+			a.swap(curSmaller, index)
 		}
 	}
-	a.swap(i+1, r)
-	return i + 1
+	curSmaller++
+	a.swap(curSmaller, max)
+	return curSmaller
 }
 
 func (a Intervals) quickSort(l, r int) {

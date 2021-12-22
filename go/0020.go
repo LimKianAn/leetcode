@@ -1,25 +1,26 @@
 package main
 
-var opening = map[rune]rune{
+var open = map[rune]rune{
 	'}': '{',
 	']': '[',
 	')': '(',
 }
+
 func isValid(s string) bool {
-	openings := []rune{}
+	opens := []rune{}
 	for _, v := range s {
 		if v == '{' || v == '[' || v == '(' {
-			openings = append(openings, v)
+			opens = append(opens, v)
 		} else {
-			if len(openings) == 0 {
+			if len(opens) == 0 {
 				return false
 			}
-			last := len(openings) - 1
-			if openings[last] != opening[v] {
+			last := len(opens) - 1
+			if opens[last] != open[v] {
 				return false
 			}
-			openings = openings[:last]
+			opens = opens[:last] // drops the last open parentheses
 		}
 	}
-	return len(openings) == 0
+	return len(opens) == 0
 }

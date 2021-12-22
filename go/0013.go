@@ -15,7 +15,8 @@ func romanToInt(s string) int {
 	sum := integer[s[last]]
 	for i := last; i > 0; i-- {
 		left := integer[s[i-1]]
-		if integer[s[i]] > left {
+		right := integer[s[i]]
+		if left < right {
 			sum -= left
 		} else {
 			sum += left

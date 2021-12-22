@@ -8,18 +8,18 @@ func subsets(nums []int) [][]int {
 
 	var dfs func(int)
 	dfs = func(i int) {
-		if i == len(nums) {
+		if i == len(nums) { // exceeding the upper bound
 			log.Print(i, " ", sub)
 			a = append(a, copied(sub))
 			return
 		}
 
 		log.Print(i, "+", sub)
-		sub = append(sub, nums[i])
+		sub = append(sub, nums[i]) // with the current integer
 		dfs(i + 1)
 
 		log.Print(i, "-", sub)
-		sub = sub[:len(sub)-1]
+		sub = sub[:len(sub)-1] // without the current integer
 		dfs(i + 1)
 	}
 

@@ -27,7 +27,7 @@ func (this *LRUCache) Get(key int) int {
 
 func (this *LRUCache) Put(key int, value int) {
 	if nd, ok := this.cache[key]; ok {
-		nd.v = value
+		nd.v = value // updates the value
 		this.rm(nd)
 		this.put(nd)
 		return
@@ -35,22 +35,22 @@ func (this *LRUCache) Put(key int, value int) {
 
 	nd := &node{k: key, v: value}
 	this.cache[key] = nd
-	this.put(nd)
+	this.put(nd) // updates the doubly linked list
 
-	if len(this.cache) > this.cap {
-		delete(this.cache, this.tail.k)
-		this.rm(this.tail)
+	if len(this.cache) > this.cap { // too many entries
+		delete(this.cache, this.tail.k) // map
+		this.rm(this.tail) // doubly linked list
 	}
 }
 
-func (this *LRUCache) put(nd *node) {
-	nd.left = this.head
+func (this *LRUCache) put(nd *node) { // growing from left to right
+	nd.left = this.head // doubly linked list
 	if this.head != nil {
-		this.head.right = nd
+		this.head.right = nd // doubly linked list
 	}
 	this.head = nd
 
-	if this.tail == nil {
+	if this.tail == nil { // at the very beginning
 		this.tail = nd
 	}
 }
@@ -72,6 +72,6 @@ func (this *LRUCache) rm(nd *node) {
 }
 
 type node struct {
-	right, left *node
+	left, right *node
 	k, v        int
 }

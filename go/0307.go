@@ -22,12 +22,12 @@ func (this *NumArray) Update(index int, val int) {
 }
 
 // O(log n)
-func (this *NumArray) get(rngToGet, fromRng *rng, node int) int {
+func (this *NumArray) get(rngToGet, fromRng *rng, sTreeIndex int) int {
 	if isEqual(rngToGet, fromRng) {
-		return this.segmentTree[node]
+		return this.segmentTree[sTreeIndex]
 	}
 	mid := fromRng.mid()
-	lChild, rChild := 2*node+1, 2*node+2 // lChild, rChild := left, right child index
+	lChild, rChild := 2*sTreeIndex+1, 2*sTreeIndex+2 // lChild, rChild := left, right child index
 	if rngToGet.left > mid {
 		return this.get(rngToGet, &rng{left: mid + 1, right: fromRng.right}, rChild)
 	}
@@ -39,32 +39,32 @@ func (this *NumArray) get(rngToGet, fromRng *rng, node int) int {
 }
 
 // O(n log n)
-func (this *NumArray) init(node int, r *rng) { // node := node index
+func (this *NumArray) init(sTreeIndex int, r *rng) {
 	if r.left == r.right {
-		this.segmentTree[node] = this.nums[r.left]
+		this.segmentTree[sTreeIndex] = this.nums[r.left]
 		return
 	}
 	mid := r.mid()
-	lChild, rChild := 2*node+1, 2*node+2 // lChild, rChild := left, right child index
+	lChild, rChild := 2*sTreeIndex+1, 2*sTreeIndex+2 // lChild, rChild := left, right child index
 	this.init(lChild, &rng{r.left, mid})
 	this.init(rChild, &rng{mid + 1, r.right})
-	this.segmentTree[node] = this.segmentTree[lChild] + this.segmentTree[rChild]
+	this.segmentTree[sTreeIndex] = this.segmentTree[lChild] + this.segmentTree[rChild]
 }
 
 // O(log n)
-func (this *NumArray) set(index, val, node int, r *rng) { // node := node index
+func (this *NumArray) set(index, val, sTreeIndex int, r *rng) {
 	if r.left == r.right {
-		this.segmentTree[node] = val
+		this.segmentTree[sTreeIndex] = val
 		return
 	}
 	mid := r.mid()
-	lChild, rChild := 2*node+1, 2*node+2 // lChild, rChild := left, right child index
+	lChild, rChild := 2*sTreeIndex+1, 2*sTreeIndex+2 // lChild, rChild := left, right child index
 	if index > mid {
 		this.set(index, val, rChild, &rng{mid + 1, r.right})
 	} else {
 		this.set(index, val, lChild, &rng{r.left, mid})
 	}
-	this.segmentTree[node] = this.segmentTree[lChild] + this.segmentTree[rChild]
+	this.segmentTree[sTreeIndex] = this.segmentTree[lChild] + this.segmentTree[rChild]
 }
 
 // rng := range

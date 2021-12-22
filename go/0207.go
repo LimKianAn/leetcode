@@ -3,31 +3,31 @@ package main
 import "log"
 
 func canFinish(numCourses int, prerequisites [][]int) bool {
-	numPr := make([]int, numCourses)     // numPr := number of prerequisites
-	ccAfter := make([][]int, numCourses) // ccAfter := courses after a prerequisite
+	coursesAfterPrerequisite := make([][]int, numCourses)
+	numPrerequisites := make([]int, numCourses)
 
 	for _, pair := range prerequisites {
-		c, pr := pair[0], pair[1] // c := course, pr := prerequisite
-		numPr[c]++
-		ccAfter[pr] = append(ccAfter[pr], c)
+		course, prerequisite := pair[0], pair[1]
+		numPrerequisites[course]++
+		coursesAfterPrerequisite[prerequisite] = append(coursesAfterPrerequisite[prerequisite], course)
 	}
 
-	prClearedCC := prerequisiteClearedCourses(numPr)
-	for i := 0; i < len(prClearedCC); i++ { // prClearedCC grows; for-range doesn't grow
-		cc := ccAfter[prClearedCC[i]]
+	prerequisiteClearedCourses := prerequisiteClearedCourses(numPrerequisites)
+	for i := 0; i < len(prerequisiteClearedCourses); i++ { // for-range doesn't grow
+		cc := coursesAfterPrerequisite[prerequisiteClearedCourses[i]]
 		for _, c := range cc {
-			if numPr[c]--; numPr[c] == 0 {
-				prClearedCC = append(prClearedCC, c)
+			if numPrerequisites[c]--; numPrerequisites[c] == 0 { // one of the prerequisites taken
+				prerequisiteClearedCourses = append(prerequisiteClearedCourses, c)
 			}
 		}
 	}
 
-	return len(prClearedCC) == numCourses
+	return len(prerequisiteClearedCourses) == numCourses
 }
 
-func prerequisiteClearedCourses(numPr []int) (a []int) {
-	for i := range numPr {
-		if numPr[i] == 0 {
+func prerequisiteClearedCourses(numPrerequisites []int) (a []int) {
+	for i := range numPrerequisites {
+		if numPrerequisites[i] == 0 {
 			a = append(a, i)
 		}
 	}

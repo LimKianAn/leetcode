@@ -21,8 +21,7 @@ func rob(root *TreeNode) int {
 		return now0, now1
 	}
 
-	max0, max1 := f(root)
-	return max(max0, max1)
+	return max(f(root))
 }
 
 func max(a, b int) int {

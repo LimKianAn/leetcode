@@ -8,22 +8,22 @@ func canPartition(nums []int) bool {
 		sum += num
 	}
 
-	if sum&1 == 1 {
+	if sum&1 == 1 { // odd number
 		return false
 	}
 
-	sum = sum >> 1
-	memo := make([]int, sum+1) // easier to reason about
+	sum = sum >> 1                   // divided by 2
+	largestSum := make([]int, sum+1) // easier to reason about
 	for _, num := range nums {
 		for sm := sum; sm >= num; sm-- {
-			// memo[sm] := current max sum which is less than or equal to sm
-			// and consists of the current subarray.
-			// Either num can't be added to the previous memo[sm]
-			// or it can only be added to the memo[sm-num]
-			memo[sm] = max(memo[sm], memo[sm-num]+num)
+			// largestSum[sm] is the largest possible sum which is less than or equal to sm
+			// and consists of a subarray.
+			// Either num can't be added to the previous largestSum[sm] (it would exceed sm)
+			// or it can only be added to the largestSum[sm-num]
+			largestSum[sm] = max(largestSum[sm], largestSum[sm-num]+num)
 		}
 	}
-	return memo[sum] == sum
+	return largestSum[sum] == sum
 }
 
 func max(a, b int) int {

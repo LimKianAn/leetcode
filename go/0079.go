@@ -37,6 +37,7 @@ func (c *ctx) existing(visited [][]bool, i, j int, index int) bool {
 	if index == len(c.word)-1 {
 		return c.board[i][j] == c.word[index]
 	}
+
 	if c.board[i][j] == c.word[index] {
 		visited[i][j] = true
 		for _, v := range directions {

@@ -8,6 +8,7 @@ func maxSubArray(nums []int) int {
 		if l > g {
 			g = l
 		}
+
 		if l < 0 {
 			l = 0
 		}

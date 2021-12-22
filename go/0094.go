@@ -1,26 +1,23 @@
 package main
 
-import "log"
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
 
-// func inorderTraversal(root *TreeNode) []int {
-// 	v := []int{} // values of nodes
-// 	addValue(root, &v)
-// 	return v
-// }
-
-// func addValue(root *TreeNode, v *[]int) {
-// 	if root == nil {
-// 		return
+// func inorderTraversal(root *TreeNode) (v []int) {
+// 	var addValue func(root *TreeNode)
+// 	addValue = func(root *TreeNode) {
+// 		if root == nil {
+// 			return
+// 		}
+// 		addValue(root.Left)
+// 		v = append(v, root.Val)
+// 		addValue(root.Right)
 // 	}
-// 	addValue(root.Left, v)
-// 	*v = append(*v, root.Val)
-// 	addValue(root.Right, v)
+// 	addValue(root)
+// 	return
 // }
 
 func inorderTraversal(root *TreeNode) (ii []int) {
@@ -44,8 +41,7 @@ func inorderTraversal(root *TreeNode) (ii []int) {
 			now = now.Right
 		}
 	}
-	log.Print(ii)
-	return ii
+	return
 }
 
 func main() {

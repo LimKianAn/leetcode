@@ -11,14 +11,20 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 		if a != nil {
 			a = a.Next
 		} else {
-			a = headB
+			a = headB // adds headB to a
 		}
 
 		if b != nil {
 			b = b.Next
 		} else {
-			b = headA
+			b = headA // adds headA to b
 		}
 	}
 	return a
 }
+
+/*
+aaaaabbb
+bbbaaaaa
+     ^ hear onward both links must be the same if any
+ */
