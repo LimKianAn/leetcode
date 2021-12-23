@@ -1,9 +1,7 @@
 package main
 
-import "log"
-
 // O(n log n) to O(n^2)
-func merge(intervals [][]int) [][]int {
+func merge0056(intervals [][]int) [][]int {
 	Intervals(intervals).quickSort(0, len(intervals)-1)
 	a := [][]int{intervals[0]} // a := answer
 	i := 0
@@ -51,13 +49,6 @@ func (a Intervals) swap(i, j int) {
 	a[i], a[j] = a[j], a[i]
 }
 
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func main() {
-	log.Print(merge([][]int{{4, 5}, {1, 4}, {0, 1}}))
-}
+// func main() {
+// 	log.Print(merge([][]int{{4, 5}, {1, 4}, {0, 1}}))
+// }

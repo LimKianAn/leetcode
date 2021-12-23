@@ -4,7 +4,7 @@ type MyQueue struct {
 	ii []int
 }
 
-func Constructor() MyQueue {
+func Constructor0232() MyQueue {
 	return MyQueue{}
 }
 

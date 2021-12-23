@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func leafSimilar(root1 *TreeNode, root2 *TreeNode) bool {
 	ll1 := leafs(root1)
 	ll2 := leafs(root2)

@@ -1,17 +1,17 @@
 package main
 
-type NumArray struct {
+type NumArray0303 struct {
 	sum []int
 }
 
-func Constructor(nums []int) NumArray {
+func Constructor0303(nums []int) NumArray0303 {
 	for i := 1; i < len(nums); i++ {
 		nums[i] += nums[i-1]
 	}
-	return NumArray{sum: nums}
+	return NumArray0303{sum: nums}
 }
 
-func (this *NumArray) SumRange(left int, right int) int {
+func (this *NumArray0303) SumRange(left int, right int) int {
 	if left == 0 {
 		return this.sum[right]
 	}

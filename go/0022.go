@@ -27,6 +27,6 @@ func generateParenthesis(n int) []string {
 	return ss
 }
 
-func main(){
-	generateParenthesis(2)
-}
+// func main(){
+// 	generateParenthesis(2)
+// }

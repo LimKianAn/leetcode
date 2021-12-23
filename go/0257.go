@@ -2,12 +2,6 @@ package main
 
 import "strconv"
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func binaryTreePaths(root *TreeNode) []string {
 	val := strconv.Itoa(root.Val)
 	if root.Left == nil && root.Right == nil {

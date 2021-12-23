@@ -1,10 +1,5 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func swapPairs(head *ListNode) *ListNode {
 	e := &ListNode{Next: head}
 	for p := e; p.Next != nil && p.Next.Next != nil; { // p := pointer

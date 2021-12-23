@@ -1,6 +1,6 @@
 package main
 
-func search(nums []int, target int) int {
+func search0033(nums []int, target int) int {
 	var f func(l, r int) int
 	f = func(l, r int) int { // l := left, r := right
 		for l <= r {

@@ -20,13 +20,6 @@ func maxProfit(prices []int) int {
 	return s[n-1]
 }
 
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func main() {
-	log.Println(maxProfit([]int{1, 2, 4}))
-}
+// func main() {
+// 	log.Println(maxProfit([]int{1, 2, 4}))
+// }

@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 func canFinish(numCourses int, prerequisites [][]int) bool {
 	coursesAfterPrerequisite := make([][]int, numCourses)
 	numPrerequisites := make([]int, numCourses)
@@ -25,7 +23,7 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 	return len(prerequisiteClearedCourses) == numCourses
 }
 
-func prerequisiteClearedCourses(numPrerequisites []int) (a []int) {
+func prerequisiteClearedCourses0207(numPrerequisites []int) (a []int) {
 	for i := range numPrerequisites {
 		if numPrerequisites[i] == 0 {
 			a = append(a, i)
@@ -34,6 +32,6 @@ func prerequisiteClearedCourses(numPrerequisites []int) (a []int) {
 	return
 }
 
-func main() {
-	log.Println(canFinish(5, [][]int{{1, 4}, {2, 4}, {3, 1}, {3, 2}}))
-}
+// func main() {
+// 	log.Println(canFinish(5, [][]int{{1, 4}, {2, 4}, {3, 1}, {3, 2}}))
+// }

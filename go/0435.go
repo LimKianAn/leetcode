@@ -21,8 +21,6 @@ func eraseOverlapIntervals(intervals [][]int) int {
 	return l - notOverlapped
 }
 
-const start, end = 0, 1
-
 type sortable [][]int
 
 func (s *sortable) Len() int {

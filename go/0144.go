@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func preorderTraversal(root *TreeNode) []int {
 	ii := &[]int{}
 	f(root, ii)

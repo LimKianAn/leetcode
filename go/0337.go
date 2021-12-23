@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func rob(root *TreeNode) int {
 	var f func(*TreeNode) (int, int)
 	f = func(root *TreeNode) (int, int) {
@@ -22,11 +16,4 @@ func rob(root *TreeNode) int {
 	}
 
 	return max(f(root))
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

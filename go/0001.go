@@ -1,6 +1,6 @@
 package main
 
-func twoSum(nums []int, target int) []int {
+func twoSum0001(nums []int, target int) []int {
 	reverse := map[int]int{}
 	for i, v := range nums {
 		if j, ok := reverse[target-v]; ok {

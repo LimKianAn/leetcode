@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func zigzagLevelOrder(root *TreeNode) (answer [][]int) {
 	var dfs func(*TreeNode, int)
 	dfs = func(tree *TreeNode, level int) {

@@ -1,11 +1,6 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func partition(head *ListNode, x int) *ListNode {
+func partition0086(head *ListNode, x int) *ListNode {
 	h1 := &ListNode{} // h := head
 	h2 := &ListNode{}
 	n1 := h1 // n := node

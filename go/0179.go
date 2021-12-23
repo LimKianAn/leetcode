@@ -26,7 +26,7 @@ func largestNumber(nums []int) string {
 	return s
 }
 
-func main() {
-	ii := []int{0, 9}
-	print(largestNumber(ii))
-}
+// func main() {
+// 	ii := []int{0, 9}
+// 	print(largestNumber(ii))
+// }

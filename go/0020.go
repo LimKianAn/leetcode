@@ -6,7 +6,7 @@ var open = map[rune]rune{
 	')': '(',
 }
 
-func isValid(s string) bool {
+func isValid0020(s string) bool {
 	opens := []rune{}
 	for _, v := range s {
 		if v == '{' || v == '[' || v == '(' {

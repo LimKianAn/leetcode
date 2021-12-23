@@ -10,7 +10,7 @@ func subsets(nums []int) [][]int {
 	dfs = func(i int) {
 		if i == len(nums) { // exceeding the upper bound
 			log.Print(i, " ", sub)
-			a = append(a, copied(sub))
+			a = append(a, copiedInts(sub))
 			return
 		}
 
@@ -27,12 +27,6 @@ func subsets(nums []int) [][]int {
 	return a
 }
 
-func copied(ii []int) []int {
-	tmp := make([]int, len(ii))
-	copy(tmp, ii)
-	return tmp
-}
-
-func main() {
-	subsets([]int{1, 2, 3})
-}
+// func main() {
+// 	subsets([]int{1, 2, 3})
+// }

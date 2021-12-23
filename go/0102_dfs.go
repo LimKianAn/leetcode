@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 // dfs
 func levelOrder(root *TreeNode) (a [][]int) { // a := answer
 	var f func(n *TreeNode, level int)

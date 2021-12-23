@@ -1,28 +1,26 @@
 package main
 
-import "log"
-
-type NumArray struct {
+type NumArray0307 struct {
 	segmentTree, nums []int
 }
 
-func Constructor(nums []int) NumArray {
+func Constructor0307(nums []int) NumArray0307 {
 	// why 4? https://www.quora.com/Why-does-4-*-N-space-have-to-be-allocated-for-a-segment-tree-where-N-is-the-size-of-the-original-array/answer/Brian-Bi?srid=5ygX
-	a := NumArray{segmentTree: make([]int, 4*len(nums)), nums: nums}
+	a := NumArray0307{segmentTree: make([]int, 4*len(nums)), nums: nums}
 	a.init(0, &rng{0, len(nums) - 1})
 	return a
 }
 
-func (this *NumArray) SumRange(left int, right int) int {
+func (this *NumArray0307) SumRange(left int, right int) int {
 	return this.get(&rng{left, right}, &rng{left: 0, right: len(this.nums) - 1}, 0)
 }
 
-func (this *NumArray) Update(index int, val int) {
+func (this *NumArray0307) Update(index int, val int) {
 	this.set(index, val, 0, &rng{0, len(this.nums) - 1})
 }
 
 // O(log n)
-func (this *NumArray) get(rngToGet, fromRng *rng, sTreeIndex int) int {
+func (this *NumArray0307) get(rngToGet, fromRng *rng, sTreeIndex int) int {
 	if isEqual(rngToGet, fromRng) {
 		return this.segmentTree[sTreeIndex]
 	}
@@ -39,7 +37,7 @@ func (this *NumArray) get(rngToGet, fromRng *rng, sTreeIndex int) int {
 }
 
 // O(n log n)
-func (this *NumArray) init(sTreeIndex int, r *rng) {
+func (this *NumArray0307) init(sTreeIndex int, r *rng) {
 	if r.left == r.right {
 		this.segmentTree[sTreeIndex] = this.nums[r.left]
 		return
@@ -52,7 +50,7 @@ func (this *NumArray) init(sTreeIndex int, r *rng) {
 }
 
 // O(log n)
-func (this *NumArray) set(index, val, sTreeIndex int, r *rng) {
+func (this *NumArray0307) set(index, val, sTreeIndex int, r *rng) {
 	if r.left == r.right {
 		this.segmentTree[sTreeIndex] = val
 		return
@@ -83,16 +81,16 @@ func isEqual(a, b *rng) bool {
 	return false
 }
 
-func main() {
-	a := Constructor([]int{0, 9, 5, 7, 3})
-	log.Print(a.SumRange(4, 4))
-	log.Print(a.SumRange(2, 4))
-	log.Print(a.SumRange(3, 3))
-	a.Update(4, 5)
-	a.Update(1, 7)
-	a.Update(0, 8)
-	log.Print(a.SumRange(1, 2))
-	a.Update(1, 9)
-	log.Print(a.SumRange(4, 4))
-	a.Update(3, 4)
-}
+// func main() {
+// 	a := Constructor([]int{0, 9, 5, 7, 3})
+// 	log.Print(a.SumRange(4, 4))
+// 	log.Print(a.SumRange(2, 4))
+// 	log.Print(a.SumRange(3, 3))
+// 	a.Update(4, 5)
+// 	a.Update(1, 7)
+// 	a.Update(0, 8)
+// 	log.Print(a.SumRange(1, 2))
+// 	a.Update(1, 9)
+// 	log.Print(a.SumRange(4, 4))
+// 	a.Update(3, 4)
+// }

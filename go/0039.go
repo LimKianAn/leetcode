@@ -15,7 +15,7 @@ func combinationSum(candidates []int, target int) [][]int {
 		}
 
 		if subT == 0 {
-			a = append(a, copied(combi))
+			a = append(a, copiedInts(combi))
 			return
 		}
 
@@ -29,7 +29,7 @@ func combinationSum(candidates []int, target int) [][]int {
 	return a
 }
 
-func copied(a []int) []int {
+func copiedInts(a []int) []int {
 	tmp := make([]int, len(a)) // size must be given
 	copy(tmp, a)
 	return tmp

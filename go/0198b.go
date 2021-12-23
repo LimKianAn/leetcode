@@ -1,6 +1,6 @@
 package main
 
-func rob(nums []int) int {
+func rob0198b(nums []int) int {
 	even, odd := 0, 0
 	for i := range nums {
 		if i%2 == 0 {
@@ -10,11 +10,4 @@ func rob(nums []int) int {
 		}
 	}
 	return max(even, odd)
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

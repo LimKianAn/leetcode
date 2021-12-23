@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func isBalanced(root *TreeNode) bool {
 	if root == nil {
 		return true
@@ -27,11 +21,4 @@ func height(root *TreeNode) int {
 		return 0
 	}
 	return max(height(root.Left), height(root.Right)) + 1 // plus the height of the root, which is one
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

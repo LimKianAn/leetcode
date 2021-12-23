@@ -1,11 +1,6 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func deleteDuplicates(head *ListNode) *ListNode {
+func deleteDuplicates0082(head *ListNode) *ListNode {
 	extended := &ListNode{Next: head}
 	cur := extended // so that we are sure the next node has a different Val
 	for cur.Next != nil && cur.Next.Next != nil {

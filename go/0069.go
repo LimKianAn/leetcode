@@ -21,7 +21,3 @@ func mySqrt(x int) (r int) {
 	}
 	return
 }
-
-func main() {
-	print(mySqrt(9))
-}

@@ -1,6 +1,6 @@
 package main
 
-func reverse(x int) int {
+func reverse0007(x int) int {
 	tmp := 0
 	for x != 0 {
 		tmp = 10*tmp + x%10

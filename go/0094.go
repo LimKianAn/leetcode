@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 // func inorderTraversal(root *TreeNode) (v []int) {
 // 	var addValue func(root *TreeNode)
 // 	addValue = func(root *TreeNode) {
@@ -44,13 +38,13 @@ func inorderTraversal(root *TreeNode) (ii []int) {
 	return
 }
 
-func main() {
-	root := &TreeNode{10, nil, nil}
-	root.Left = &TreeNode{20, nil, nil}
-	root.Right = &TreeNode{30, nil, nil}
-	root.Left.Left = &TreeNode{40, nil, nil}
-	root.Left.Right = &TreeNode{50, nil, nil}
-	root.Right.Right = &TreeNode{60, nil, nil}
-	root.Left.Left.Left = &TreeNode{70, nil, nil}
-	inorderTraversal(root)
-}
+// func main() {
+// 	root := &TreeNode{10, nil, nil}
+// 	root.Left = &TreeNode{20, nil, nil}
+// 	root.Right = &TreeNode{30, nil, nil}
+// 	root.Left.Left = &TreeNode{40, nil, nil}
+// 	root.Left.Right = &TreeNode{50, nil, nil}
+// 	root.Right.Right = &TreeNode{60, nil, nil}
+// 	root.Left.Left.Left = &TreeNode{70, nil, nil}
+// 	inorderTraversal(root)
+// }

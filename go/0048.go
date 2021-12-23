@@ -1,6 +1,6 @@
 package main
 
-func rotate(matrix [][]int) {
+func rotate0048(matrix [][]int) {
 	n := len(matrix)
 
 	// 1, 2

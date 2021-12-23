@@ -5,7 +5,7 @@ type MinStack struct {
 }
 
 /** initialize your data structure here. */
-func Constructor() MinStack {
+func Constructor0155() MinStack {
 	return MinStack{[]int{}, []int{}}
 }
 

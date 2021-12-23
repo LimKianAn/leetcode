@@ -2,7 +2,7 @@ package main
 
 type WordSet map[string]struct{}
 
-func ladderLength(beginWord string, endWord string, wordList []string) int {
+func ladderLengthB(beginWord string, endWord string, wordList []string) int {
 	// from slice to set
 	wordSet := WordSet{}
 	for _, word := range wordList {
@@ -57,11 +57,4 @@ func ladderLength(beginWord string, endWord string, wordList []string) int {
 	}
 
 	return 0
-}
-
-func main() {
-	start := "hit"
-	end := "cog"
-	words := []string{"hot", "dot", "dog", "lot", "log", "cog"}
-	print(ladderLength(start, end, words))
 }

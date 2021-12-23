@@ -4,13 +4,6 @@ func numIslands(grid [][]byte) int {
 	return newGrid(grid).numOfIslands()
 }
 
-var directions = [4][2]int{
-	{1, 0},
-	{-1, 0},
-	{0, 1},
-	{0, -1},
-}
-
 type grid struct {
 	grid    [][]byte
 	visited [][]bool

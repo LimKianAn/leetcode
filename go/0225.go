@@ -4,7 +4,7 @@ type MyStack struct {
 	a []int
 }
 
-func Constructor() MyStack {
+func Constructor0225() MyStack {
 	return MyStack{[]int{}}
 }
 

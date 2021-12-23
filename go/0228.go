@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"strconv"
 )
 
@@ -26,6 +25,6 @@ func lastOfRange(nums []int, start int) int {
 	return last
 }
 
-func main() {
-	log.Print(lastOfRange([]int{0, 1, 3, 6, 7, 8}, 3))
-}
+// func main() {
+// 	log.Print(lastOfRange([]int{0, 1, 3, 6, 7, 8}, 3))
+// }

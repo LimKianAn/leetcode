@@ -1,14 +1,12 @@
 package main
 
-import "log"
-
 type NumArray struct {
 	tree, nums []int
 }
 
 // O(n)
 // https://www.youtube.com/watch?v=uSFzHCZ4E-8
-func Constructor(nums []int) NumArray {
+func Constructor0307b(nums []int) NumArray {
 	a := NumArray{tree: make([]int, len(nums)+1), nums: nums}
 	copy(a.tree[1:], nums)
 	for i := 1; i < len(a.tree); i++ {
@@ -45,9 +43,9 @@ func (this *NumArray) sum(i int) int {
 	return sum
 }
 
-func main() {
-	a := Constructor([]int{5, 2, 9, -3, 5, 20, 10, -7, 2, 3, -4, 0, -2, 15, 5})
-	log.Print(a.sum(7), a.sum(8))
-	a.add(4, 10)
-	log.Print(a.tree[4], a.tree[8])
-}
+// func main() {
+// 	a := Constructor0307b([]int{5, 2, 9, -3, 5, 20, 10, -7, 2, 3, -4, 0, -2, 15, 5})
+// 	log.Print(a.sum(7), a.sum(8))
+// 	a.add(4, 10)
+// 	log.Print(a.tree[4], a.tree[8])
+// }

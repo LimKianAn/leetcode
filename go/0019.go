@@ -1,10 +1,5 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	e := &ListNode{Next: head} // extended head
 	l, r := e, e               // left, right

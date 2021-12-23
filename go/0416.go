@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 func canPartition(nums []int) bool {
 	sum := 0
 	for _, num := range nums {
@@ -26,13 +24,6 @@ func canPartition(nums []int) bool {
 	return largestSum[sum] == sum
 }
 
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func main() {
-	log.Println(canPartition([]int{8, 3, 5}))
-}
+// func main() {
+// 	log.Println(canPartition([]int{8, 3, 5}))
+// }

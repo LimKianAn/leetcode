@@ -1,6 +1,6 @@
 package main
 
-func isPalindrome(x int) bool {
+func isPalindrome0009(x int) bool {
 	reverse := 0
 	for tmp := x; tmp > 0; {
 		reverse = 10*reverse + tmp%10

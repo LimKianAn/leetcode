@@ -5,7 +5,7 @@ type NumMatrix struct {
 }
 
 // O(m*n)
-func Constructor(matrix [][]int) NumMatrix {
+func Constructor0304(matrix [][]int) NumMatrix {
 	m, n := len(matrix), len(matrix[0])
 
 	// sum is (m+1)*(n+1) so that the 0th row and column of matrix

@@ -3,13 +3,7 @@
 package main
 
 import (
-	"log"
 	"sort"
-)
-
-const (
-	start = 0
-	end   = 1
 )
 
 type sortable2DInts [][]int
@@ -25,13 +19,6 @@ func (x sortable2DInts) Less(i, j int) bool {
 func (x sortable2DInts) Swap(i, j int) {
 	x[i], x[j] = x[j], x[i]
 	return
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
 
 func maxNumOverlapped(schedules [][]int) int {
@@ -55,16 +42,16 @@ func maxNumOverlapped(schedules [][]int) int {
 	return globalMax
 }
 
-func main() {
-	schedulesA := [][]int{{1, 8}, {5, 10}, {14, 20}}
-	log.Println(maxNumOverlapped(schedulesA))
+// func main() {
+// 	schedulesA := [][]int{{1, 8}, {5, 10}, {14, 20}}
+// 	log.Println(maxNumOverlapped(schedulesA))
 
-	schedulesB := [][]int{{1, 8}, {9, 10}, {14, 20}}
-	log.Println(maxNumOverlapped(schedulesB))
+// 	schedulesB := [][]int{{1, 8}, {9, 10}, {14, 20}}
+// 	log.Println(maxNumOverlapped(schedulesB))
 
-	schedulesC := [][]int{{5, 10}, {14, 20}, {18, 28}, {18, 28}, {21, 23}}
-	log.Println(maxNumOverlapped(schedulesC))
+// 	schedulesC := [][]int{{5, 10}, {14, 20}, {18, 28}, {18, 28}, {21, 23}}
+// 	log.Println(maxNumOverlapped(schedulesC))
 
-	schedulesD := [][]int{}
-	log.Println(maxNumOverlapped(schedulesD))
-}
+// 	schedulesD := [][]int{}
+// 	log.Println(maxNumOverlapped(schedulesD))
+// }

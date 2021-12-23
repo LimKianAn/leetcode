@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"strconv"
 )
 
@@ -47,6 +46,6 @@ func multiply(s string, times int) (multiplied string) {
 	return
 }
 
-func main() {
-	log.Print(decodeString("3[a]2[bc]"))
-}
+// func main() {
+// 	log.Print(decodeString("3[a]2[bc]"))
+// }

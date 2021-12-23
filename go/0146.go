@@ -1,15 +1,15 @@
 package main
 
 type LRUCache struct {
-	cache      map[int]*node
+	cache      map[int]*node0146
 	cap        int
-	head, tail *node
+	head, tail *node0146
 }
 
 // (-) tail head (+)
-func Constructor(capacity int) LRUCache {
+func Constructor0146(capacity int) LRUCache {
 	lru := LRUCache{
-		cache: make(map[int]*node),
+		cache: make(map[int]*node0146),
 		cap:   capacity,
 	}
 
@@ -33,17 +33,17 @@ func (this *LRUCache) Put(key int, value int) {
 		return
 	}
 
-	nd := &node{k: key, v: value}
+	nd := &node0146{k: key, v: value}
 	this.cache[key] = nd
 	this.put(nd) // updates the doubly linked list
 
 	if len(this.cache) > this.cap { // too many entries
 		delete(this.cache, this.tail.k) // map
-		this.rm(this.tail) // doubly linked list
+		this.rm(this.tail)              // doubly linked list
 	}
 }
 
-func (this *LRUCache) put(nd *node) { // growing from left to right
+func (this *LRUCache) put(nd *node0146) { // growing from left to right
 	nd.left = this.head // doubly linked list
 	if this.head != nil {
 		this.head.right = nd // doubly linked list
@@ -55,7 +55,7 @@ func (this *LRUCache) put(nd *node) { // growing from left to right
 	}
 }
 
-func (this *LRUCache) rm(nd *node) {
+func (this *LRUCache) rm(nd *node0146) {
 	if nd == this.head {
 		this.head = nd.left
 		return
@@ -71,7 +71,7 @@ func (this *LRUCache) rm(nd *node) {
 	nd.left.right = nd.right
 }
 
-type node struct {
-	left, right *node
+type node0146 struct {
+	left, right *node0146
 	k, v        int
 }

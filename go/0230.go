@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func kthSmallest(root *TreeNode, k int) (val int) {
 	var inOrder func(root *TreeNode)
 	inOrder = func(root *TreeNode) {

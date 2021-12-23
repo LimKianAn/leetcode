@@ -1,12 +1,5 @@
 package main
 
-var directions = [4][2]int{
-	{1, 0},
-	{-1, 0},
-	{0, 1},
-	{0, -1},
-}
-
 func exist(board [][]byte, word string) bool {
 	visited := makeBoolArray(len(board), len(board[0]))
 	c := ctx{board: board, word: word}

@@ -1,11 +1,5 @@
 package main
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func minDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
@@ -17,11 +11,4 @@ func minDepth(root *TreeNode) int {
 		return minDepth(root.Left) + 1
 	}
 	return min(minDepth(root.Left), minDepth(root.Right)) + 1
-}
-
-func min(a, b int) int {
-	if a > b {
-		return b
-	}
-	return a
 }

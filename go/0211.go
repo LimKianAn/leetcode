@@ -6,7 +6,7 @@ type WordDictionary struct {
 }
 
 /** Initialize your data structure here. */
-func Constructor() WordDictionary {
+func Constructor0211() WordDictionary {
 	return WordDictionary{next: map[rune]*WordDictionary{}}
 }
 

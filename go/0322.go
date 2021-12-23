@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 func coinChange(coins []int, amount int) int {
 	dp := make([]int, amount+1)
 
@@ -21,13 +19,6 @@ func coinChange(coins []int, amount int) int {
 	return dp[amount]
 }
 
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func main() {
-	log.Println(coinChange([]int{2}, 3))
-}
+// func main() {
+// 	log.Println(coinChange([]int{2}, 3))
+// }

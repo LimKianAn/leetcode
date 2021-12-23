@@ -1,12 +1,12 @@
 package main
 
 type Trie struct {
-	next   map[rune]*Trie
+	next  map[rune]*Trie
 	isEnd bool
 }
 
 /** Initialize your data structure here. */
-func Constructor() Trie {
+func Constructor0208() Trie {
 	return Trie{next: map[rune]*Trie{}}
 }
 
