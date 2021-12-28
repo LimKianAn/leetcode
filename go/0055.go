@@ -1,13 +1,12 @@
 package main
 
 func canJump(nums []int) bool {
-	rightmost := 0
-	for i, v := range nums {
-		if rightmost < i {
+	rightmostIndex := 0
+	for i, jump := range nums {
+		if rightmostIndex < i {
 			return false
 		}
-
-		rightmost = max(rightmost, i+v)
+		rightmostIndex = max(rightmostIndex, i+jump)
 	}
 	return true
 }
