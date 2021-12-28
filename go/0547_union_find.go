@@ -1,6 +1,6 @@
 package main
 
-func findCircleNum(isConnected [][]int) int {
+func findCircleNumUnionFind(isConnected [][]int) int {
 	n := len(isConnected)
 	parents := make([]int, n)
 	for i := range parents {

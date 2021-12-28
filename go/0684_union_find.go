@@ -1,6 +1,6 @@
 package main
 
-func findRedundantConnection(edges [][]int) []int {
+func findRedundantConnectionUnionFind(edges [][]int) []int {
 	n := len(edges)
 	parents := make([]int, n+1) // id in the range [1,n]
 	for i := range parents {
