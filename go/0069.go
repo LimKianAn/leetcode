@@ -9,15 +9,15 @@ package main
 // 	return r
 // }
 
-func mySqrt(x int) (r int) {
-	up := x // upper bound
-	for r < up {
-		mid := r + (up-r+1)>>1
-		if mid*mid > x {
-			up = mid - 1
+func mySqrt(x int) int {
+	l, r := 0, x+1
+	for l < r {
+		m := l + (r-l)>>1
+		if x < m*m {
+			r = m
 		} else {
-			r = mid
+			l = m + 1
 		}
 	}
-	return
+	return l - 1
 }
