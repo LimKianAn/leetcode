@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 type Heap []*Element
 
 func NewHeap(ee []*Element) *Heap { // log(n)
@@ -98,8 +96,4 @@ func topKFrequent(nums []int, k int) []int {
 		ii = append(ii, h.Pop().num)
 	}
 	return ii
-}
-
-func main() {
-	log.Print(topKFrequent([]int{1, 1, 1, 2, 2, 2, 3, 3, 3}, 3))
 }
