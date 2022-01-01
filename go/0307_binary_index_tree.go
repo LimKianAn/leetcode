@@ -1,13 +1,13 @@
 package main
 
-type NumArray struct {
+type NumArrayBIT struct {
 	tree, nums []int
 }
 
 // O(n)
 // https://www.youtube.com/watch?v=uSFzHCZ4E-8
-func Constructor0307b(nums []int) NumArray {
-	a := NumArray{tree: make([]int, len(nums)+1), nums: nums}
+func ConstructorBinaryIndexTree(nums []int) NumArrayBIT {
+	a := NumArrayBIT{tree: make([]int, len(nums)+1), nums: nums}
 	copy(a.tree[1:], nums)
 	for i := 1; i < len(a.tree); i++ {
 		p := i + i&-i // p := parent
@@ -18,24 +18,24 @@ func Constructor0307b(nums []int) NumArray {
 	return a
 }
 
-func (this *NumArray) SumRange(left int, right int) int {
+func (this *NumArrayBIT) SumRange(left int, right int) int {
 	return this.sum(right+1) - this.sum(left)
 }
 
-func (this *NumArray) Update(index int, val int) {
+func (this *NumArrayBIT) Update(index int, val int) {
 	this.add(index+1, val-this.nums[index])
 	this.nums[index] = val
 }
 
 // O(log n)
-func (this *NumArray) add(i, v int) { // i, v := index, value
+func (this *NumArrayBIT) add(i, v int) { // i, v := index, value
 	for ; i < len(this.tree); i += i & -i {
 		this.tree[i] += v
 	}
 }
 
 // O(log n)
-func (this *NumArray) sum(i int) int {
+func (this *NumArrayBIT) sum(i int) int {
 	sum := 0
 	for ; i > 0; i -= i & -i {
 		sum += this.tree[i]
