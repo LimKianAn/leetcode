@@ -1,26 +1,26 @@
 package main
 
-type NumArray0307 struct {
+type NumArrayST struct {
 	segmentTree, nums []int
 }
 
-func Constructor0307(nums []int) NumArray0307 {
+func ConstructorSegmentTreeArray(nums []int) NumArrayST {
 	// why 4? https://www.quora.com/Why-does-4-*-N-space-have-to-be-allocated-for-a-segment-tree-where-N-is-the-size-of-the-original-array/answer/Brian-Bi?srid=5ygX
-	a := NumArray0307{segmentTree: make([]int, 4*len(nums)), nums: nums}
+	a := NumArrayST{segmentTree: make([]int, 4*len(nums)), nums: nums}
 	a.init(0, &rng{0, len(nums) - 1})
 	return a
 }
 
-func (this *NumArray0307) SumRange(left int, right int) int {
+func (this *NumArrayST) SumRange(left int, right int) int {
 	return this.get(&rng{left, right}, &rng{left: 0, right: len(this.nums) - 1}, 0)
 }
 
-func (this *NumArray0307) Update(index int, val int) {
+func (this *NumArrayST) Update(index int, val int) {
 	this.set(index, val, 0, &rng{0, len(this.nums) - 1})
 }
 
 // O(log n)
-func (this *NumArray0307) get(rngToGet, fromRng *rng, sTreeIndex int) int {
+func (this *NumArrayST) get(rngToGet, fromRng *rng, sTreeIndex int) int {
 	if isEqual(rngToGet, fromRng) {
 		return this.segmentTree[sTreeIndex]
 	}
@@ -37,7 +37,7 @@ func (this *NumArray0307) get(rngToGet, fromRng *rng, sTreeIndex int) int {
 }
 
 // O(n log n)
-func (this *NumArray0307) init(sTreeIndex int, r *rng) {
+func (this *NumArrayST) init(sTreeIndex int, r *rng) {
 	if r.left == r.right {
 		this.segmentTree[sTreeIndex] = this.nums[r.left]
 		return
@@ -50,7 +50,7 @@ func (this *NumArray0307) init(sTreeIndex int, r *rng) {
 }
 
 // O(log n)
-func (this *NumArray0307) set(index, val, sTreeIndex int, r *rng) {
+func (this *NumArrayST) set(index, val, sTreeIndex int, r *rng) {
 	if r.left == r.right {
 		this.segmentTree[sTreeIndex] = val
 		return
