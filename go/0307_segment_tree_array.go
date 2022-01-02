@@ -36,7 +36,7 @@ func (this *NumArrayST) get(rngToGet, fromRng *rng, sTreeIndex int) int {
 		this.get(&rng{left: mid + 1, right: rngToGet.right}, &rng{left: mid + 1, right: fromRng.right}, rChild)
 }
 
-// O(n log n)
+// O(n)
 func (this *NumArrayST) init(sTreeIndex int, r *rng) {
 	if r.left == r.right {
 		this.segmentTree[sTreeIndex] = this.nums[r.left]
