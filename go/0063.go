@@ -7,6 +7,7 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 
 	m, n := len(obstacleGrid), len(obstacleGrid[0])
 	a := new2DArray(m, n) // a := array
+	a[0][0] = 1
 
 	// Init the first column
 	for i := 1; i < m; i++ {
@@ -31,13 +32,4 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 	}
 
 	return a[m-1][n-1]
-}
-
-func new2DArray(m, n int) [][]int {
-	a := make([][]int, m)
-	for i := range a {
-		a[i] = make([]int, n)
-	}
-	a[0][0] = 1
-	return a
 }

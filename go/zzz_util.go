@@ -40,3 +40,11 @@ func min(a, b int) int {
 	}
 	return a
 }
+
+func new2DArray(m, n int) [][]int {
+	a := make([][]int, m)
+	for i := range a {
+		a[i] = make([]int, n)
+	}
+	return a
+}
