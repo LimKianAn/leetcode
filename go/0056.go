@@ -23,16 +23,16 @@ func (a Intervals) less(index, pivot int) bool {
 }
 
 // max is chosen to be pivot
-func (a Intervals) partition(min, max int) int {
-	curSmaller := min - 1
-	for index := min; index < max; index++ {
-		if a.less(index, max) {
+func (a Intervals) partition(l, r int) int {
+	curSmaller := l - 1
+	for i := l; i < r; i++ {
+		if a.less(i, r) {
 			curSmaller++
-			a.swap(curSmaller, index)
+			a.swap(curSmaller, i)
 		}
 	}
 	curSmaller++
-	a.swap(curSmaller, max)
+	a.swap(curSmaller, r)
 	return curSmaller
 }
 
