@@ -3,37 +3,31 @@ package main
 import "sort"
 
 func eraseOverlapIntervals(intervals [][]int) int {
-	l := len(intervals)
-	if l == 0 {
-		return 0
-	}
+	sort.Sort(sortableIntervalsByEnd(intervals))
 
-	s := sortable(intervals)
-	sort.Sort(&s)
-
-	notOverlapped := 1
-	for last, now := 0, 1; now < l; now++ {
-		if s[last][end] <= s[now][start] {
-			notOverlapped++
-			last = now
+	n := len(intervals)
+	start := 0
+	overlappingGroupNum := 1 // only sorting by inerval-end guarantees all members in a group overlap with each other
+	for i := 1; i < n; i++ {
+		if intervals[start][1] > intervals[i][0] {
+			continue
 		}
+		start = i
+		overlappingGroupNum++
 	}
-	return l - notOverlapped
+	return n - overlappingGroupNum
 }
 
-type sortable [][]int
+type sortableIntervalsByEnd [][]int
 
-func (s *sortable) Len() int {
-	return len(*s)
+func (s sortableIntervalsByEnd) Len() int {
+	return len(s)
 }
 
-func (s *sortable) Less(i, j int) bool {
-	if (*s)[i][end] != (*s)[j][end] {
-		return (*s)[i][end] < (*s)[j][end]
-	}
-	return false
+func (s sortableIntervalsByEnd) Less(i, j int) bool {
+	return s[i][1] < s[j][1]
 }
 
-func (s *sortable) Swap(i, j int) {
-	(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
+func (s sortableIntervalsByEnd) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
 }
