@@ -1,45 +1,41 @@
 // https://zxi.mytechroad.com/blog/searching/leetcode-815-bus-routes/
 package main
 
-func numBusesToDestination(routes [][]int, source int, target int) (minBusNum int) {
+func numBusesToDestination(routes [][]int, source int, target int) int {
 	if source == target {
-		return
+		return 0
 	}
 
-	busIDs := map[int][]int{}
-	for busID := 0; busID < len(routes); busID++ {
-		for _, busStop := range routes[busID] {
-			busIDs[busStop] = append(busIDs[busStop], busID)
+	stopToRouteIDs := map[int][]int{}
+	for routeID, route := range routes {
+		for _, busStop := range route {
+			stopToRouteIDs[busStop] = append(stopToRouteIDs[busStop], routeID)
 		}
 	}
 
-	busStopQueue := []int{source}
-	isBusTaken := make([]bool, len(routes))
-	for len(busStopQueue) > 0 {
-		minBusNum++
+	taken := map[int]bool{} // taken[routeID]
+	q := []int{source}      // stops
+	busNum := 1
+	for len(q) > 0 {
+		for qLen := len(q); qLen > 0; qLen-- {
+			busStop := q[0] // front
+			q = q[1:]       // pop
 
-		busStopNum := len(busStopQueue)
-		for i := 0; i < busStopNum; i++ {
-			busStop := busStopQueue[0]      // front
-			busStopQueue = busStopQueue[1:] // pop
-			for _, busID := range busIDs[busStop] {
-				if isBusTaken[busID] {
+			for _, routeID := range stopToRouteIDs[busStop] {
+				if taken[routeID] {
 					continue
 				}
-				isBusTaken[busID] = true
+				taken[routeID] = true
 
-				busStops := routes[busID]
-				for _, busStop := range busStops {
+				for _, busStop := range routes[routeID] {
 					if busStop == target {
-						return
+						return busNum
 					}
-
-					busStopQueue = append(busStopQueue, busStop)
+					q = append(q, busStop)
 				}
 			}
 		}
-
+		busNum++
 	}
-
 	return -1
 }
