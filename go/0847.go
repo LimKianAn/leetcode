@@ -1,46 +1,48 @@
 package main
 
 func shortestPathLength(graph [][]int) int {
+	n := len(graph)
+
 	type state struct {
-		currNode, visitedNodes int
+		curNode, visitedNodes int
 	}
+	happened := map[state]bool{}
 
-	q := []state{}
-	for i := range graph {
-		q = append(q, state{
-			currNode:     i,
+	q := make([]state, 0, n)
+	for i := range graph { // different starting points
+		st := state{
+			curNode:      i,
 			visitedNodes: 1 << i, // uses int as a bit array to represent if each node is visited
-		})
+		}
+		q = append(q, st)
+		happened[st] = true
 	}
 
-	steps := 0
-	hasHappened := map[state]bool{}
+	length := 0
 	for len(q) > 0 {
-		qLen := len(q)
-		for qLen > 0 {
+		for qLen := len(q); qLen > 0; qLen-- {
 			st := q[0]
 			q = q[1:]
-			qLen--
 
-			curr := st.currNode
+			cur := st.curNode
 			visited := st.visitedNodes
-			if visited == 1<<len(graph)-1 { // all nodes are visited (-1!)
-				return steps
+			if visited == 1<<n-1 { // all nodes are visited
+				return length
 			}
 
-			if hasHappened[st] { // this route has been taken
-				continue
-			}
-			hasHappened[st] = true
-
-			for _, next := range graph[curr] {
-				q = append(q, state{
-					currNode:     next,
-					visitedNodes: visited | 1<<next, // sets the bit
-				})
+			for _, next := range graph[cur] {
+				st := state{
+					curNode:      next,
+					visitedNodes: visited | 1<<next,
+				}
+				if happened[st] { // this path has been taken
+					continue
+				}
+				q = append(q, st)
+				happened[st] = true
 			}
 		}
-		steps++
+		length++
 	}
 	return -1
 }
