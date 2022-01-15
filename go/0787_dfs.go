@@ -1,13 +1,19 @@
+// 2022.01.15
+
 package main
 
 func findCheapestPrice_d(n int, flights [][]int, src int, dst int, k int) int {
-	fPrice := map[int]map[int]int{}
+	if src == dst {
+		return 0
+	}
+
+	priceMap := map[int]map[int]int{}
 	for _, f := range flights {
-		from, to, price := f[0], f[1], f[2]
-		if fPrice[from] == nil {
-			fPrice[from] = map[int]int{}
+		cur, next, price := f[0], f[1], f[2]
+		if priceMap[cur] == nil {
+			priceMap[cur] = map[int]int{}
 		}
-		fPrice[from][to] = price
+		priceMap[cur][next] = price
 	}
 
 	visited := make([]bool, n)
@@ -16,8 +22,8 @@ func findCheapestPrice_d(n int, flights [][]int, src int, dst int, k int) int {
 	maxInt := 1<<63 - 1
 	ans := maxInt
 
-	var dfs func(cur, cost, stop int)
-	dfs = func(cur, cost, stop int) {
+	var dfs func(cur, stop, cost int)
+	dfs = func(cur, stop, cost int) {
 		if cur == dst {
 			ans = cost
 			return
@@ -27,19 +33,19 @@ func findCheapestPrice_d(n int, flights [][]int, src int, dst int, k int) int {
 			return
 		}
 
-		for to, price := range fPrice[cur] {
-			if visited[to] {
+		for next, price := range priceMap[cur] {
+			if visited[next] {
 				continue
 			}
 
-			newCost := cost + price
-			if newCost >= ans {
+			nextCost := cost + price
+			if nextCost >= ans {
 				continue
 			}
 
-			visited[to] = true
-			dfs(to, newCost, stop+1)
-			visited[to] = false
+			visited[next] = true
+			dfs(next, stop+1, nextCost)
+			visited[next] = false
 		}
 	}
 	dfs(src, 0, 0)
