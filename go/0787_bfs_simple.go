@@ -1,3 +1,5 @@
+// 2022.01.15
+
 package main
 
 func findCheapestPrice_b_s(n int, flights [][]int, src int, dst int, k int) int {
@@ -5,32 +7,34 @@ func findCheapestPrice_b_s(n int, flights [][]int, src int, dst int, k int) int 
 		return 0
 	}
 
-	flightPrice := map[int]map[int]int{}
+	priceMap := map[int]map[int]int{}
 	for _, f := range flights {
 		from, to, price := f[0], f[1], f[2]
-		if flightPrice[from] == nil {
-			flightPrice[from] = map[int]int{}
+		if priceMap[from] == nil {
+			priceMap[from] = map[int]int{}
 		}
-		flightPrice[from][to] = price
+		priceMap[from][to] = price
 	}
-
-	q := [][3]int{{src, 0, 0}} // city, cost, stop
 
 	const maxInt = 1<<63 - 1 // lc doesn't like math.MaxInt
-	cheapest := make([]int, n)
-	for i := range cheapest {
-		cheapest[i] = maxInt
+	cityToCost := make([]int, n)
+	for i := range cityToCost {
+		cityToCost[i] = maxInt
 	}
-	cheapest[src] = 0
+	cityToCost[src] = 0
 
-	for i := 0; i < len(q); i++ {
-		city, cost, stop := q[i][0], q[i][1], q[i][2]
-		for to, price := range flightPrice[city] {
+	q := [][3]int{{src, 0, 0}} // city, stop, cost
+	for len(q) > 0 {
+		front := q[0]
+		q = q[1:]
+
+		city, stop, cost := front[0], front[1], front[2]
+		for to, price := range priceMap[city] {
 			newCost := cost + price
-			if newCost >= cheapest[to] {
+			if cityToCost[to] <= newCost {
 				continue
 			}
-			cheapest[to] = newCost
+			cityToCost[to] = newCost
 
 			if stop == k {
 				continue
@@ -40,12 +44,12 @@ func findCheapestPrice_b_s(n int, flights [][]int, src int, dst int, k int) int 
 				continue
 			}
 
-			q = append(q, [3]int{to, newCost, stop + 1})
+			q = append(q, [3]int{to, stop + 1, newCost})
 		}
 	}
 
-	if cheapest[dst] == maxInt {
+	if cityToCost[dst] == maxInt {
 		return -1
 	}
-	return cheapest[dst]
+	return cityToCost[dst]
 }
