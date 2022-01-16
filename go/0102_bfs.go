@@ -1,28 +1,28 @@
+// 2022.01.16
+
 package main
 
-// bfs
-func levelOrder0102(root *TreeNode) (allVals [][]int) {
+func levelOrder_b(root *TreeNode) [][]int {
 	if root == nil {
-		return
+		return nil
 	}
 
-	for queue := []*TreeNode{root}; len(queue) > 0; {
-		size := len(queue)
+	ans := [][]int{}
+	for q := []*TreeNode{root}; len(q) > 0; {
+		qLen := len(q)
 		vals := []int{}
-		for i := 0; i < size; i++ {
-			if node := queue[i].Left; node != nil {
-				queue = append(queue, node) // enqueues the left child
-			}
+		for i := 0; i < qLen; i++ {
+			vals = append(vals, q[i].Val)
 
-			if node := queue[i].Right; node != nil {
-				queue = append(queue, node) // enqueues the right child
+			if l := q[i].Left; l != nil {
+				q = append(q, l) // enqueues the left child
 			}
-
-			vals = append(vals, queue[i].Val)
+			if r := q[i].Right; r != nil {
+				q = append(q, r) // enqueues the right child
+			}
 		}
-		allVals = append(allVals, vals)
-		queue = queue[size:] // dequeues the processed one
+		ans = append(ans, vals)
+		q = q[qLen:] // dequeues the processed one
 	}
-
-	return
+	return ans
 }

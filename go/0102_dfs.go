@@ -1,22 +1,24 @@
+// 2022.01.16
+
 package main
 
-// dfs
-func levelOrder(root *TreeNode) (a [][]int) { // a := answer
-	var f func(n *TreeNode, level int)
-	f = func(n *TreeNode, level int) { // n := node
-		if n == nil {
+func levelOrder_d(root *TreeNode) [][]int {
+	ans := [][]int{}
+	var dfs func(root *TreeNode, level int)
+	dfs = func(root *TreeNode, level int) {
+		if root == nil {
 			return
 		}
 
-		if level == len(a) { // first one on this level
-			a = append(a, []int{n.Val})
+		if level == len(ans) { // first one on this level
+			ans = append(ans, []int{root.Val})
 		} else {
-			a[level] = append(a[level], n.Val)
+			ans[level] = append(ans[level], root.Val)
 		}
 
-		f(n.Left, level+1)
-		f(n.Right, level+1)
+		dfs(root.Left, level+1)
+		dfs(root.Right, level+1)
 	}
-	f(root, 0)
-	return
+	dfs(root, 0)
+	return ans
 }
