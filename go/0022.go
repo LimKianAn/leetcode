@@ -1,32 +1,26 @@
-package main
+// 2022.01.16
 
-import "log"
+package main
 
 func generateParenthesis(n int) []string {
 	ss := []string{}
-
-	var dfs func(string, int, int)
-	dfs = func(s string, l, r int) { // l := numbers of left parenthesis, r := right
-		if l > r {
-			log.Println(s) // things like ()), ), which are not valid
-			return
+	var dfs func(s string, l, r int)
+	dfs = func(s string, l, r int) { // l := numbers of parenthesis, r := right
+		if l < r {
+			return // things like ()), )  are not valid
 		}
-		if l == 0 && r == 0 {
+
+		if l == n && r == n {
 			ss = append(ss, s)
 		}
-		if l > 0 {
-			dfs(s+"(", l-1, r)
+
+		if l < n {
+			dfs(s+"(", l+1, r)
 		}
-		if r > 0 {
-			dfs(s+")", l, r-1)
+		if r < n {
+			dfs(s+")", l, r+1)
 		}
 	}
-
-	dfs("", n, n)
-
+	dfs("", 0, 0)
 	return ss
 }
-
-// func main(){
-// 	generateParenthesis(2)
-// }
