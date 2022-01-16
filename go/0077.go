@@ -1,19 +1,22 @@
+// 2022.01.16
+
 package main
 
 // Compare with 0046
 func combine(n int, k int) [][]int { // from huahua
-	ans := [][]int{}
 	tmp := make([]int, 0, k)
-	var dfs func(curr int)
-	dfs = func(curr int) {
+
+	ans := [][]int{}
+	var dfs func(start int)
+	dfs = func(start int) {
 		if len(tmp) == k {
-			copied := make([]int, len(tmp))
-			copy(copied, tmp)
-			ans = append(ans, copied)
+			cp := make([]int, k)
+			copy(cp, tmp)
+			ans = append(ans, cp)
 			return
 		}
 
-		for i := curr; i <= n; i++ {
+		for i := start; i <= n; i++ {
 			tmp = append(tmp, i)
 			dfs(i + 1)
 			tmp = tmp[:len(tmp)-1]
