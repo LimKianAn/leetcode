@@ -1,32 +1,28 @@
+// 2022.01.16
+
 package main
 
-import "log"
-
 func subsets(nums []int) [][]int {
-	a := [][]int{} // a := answer
+	n := len(nums)
+
 	sub := []int{}
 
-	var dfs func(int)
+	ans := make([][]int, 0, 2^n)
+	var dfs func(i int)
 	dfs = func(i int) {
 		if i == len(nums) { // exceeding the upper bound
-			log.Print(i, " ", sub)
-			a = append(a, copiedInts(sub))
+			cp := make([]int, len(sub))
+			copy(cp, sub)
+			ans = append(ans, cp)
 			return
 		}
 
-		log.Print(i, "+", sub)
 		sub = append(sub, nums[i]) // with the current integer
 		dfs(i + 1)
-
-		log.Print(i, "-", sub)
 		sub = sub[:len(sub)-1] // without the current integer
+
 		dfs(i + 1)
 	}
-
 	dfs(0)
-	return a
+	return ans
 }
-
-// func main() {
-// 	subsets([]int{1, 2, 3})
-// }
