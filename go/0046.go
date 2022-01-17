@@ -3,29 +3,28 @@
 package main
 
 // Compare with 0077
-func permute(nums []int) [][]int { // from huahua
+func permute(nums []int) [][]int {
 	n := len(nums)
 	used := make([]bool, n)
-	tmp := make([]int, 0, n)
 
 	ansLen := 1
-	var fatorial func(i int)
-	fatorial = func(i int) {
+	var factorial func(i int)
+	factorial = func(i int) {
 		if i == 1 {
 			return
 		}
 		ansLen *= i
-		fatorial(i - 1)
+		factorial(i - 1)
 	}
-	fatorial(n)
+	factorial(n)
 
 	ans := make([][]int, 0, ansLen)
-	var dfs func()
-	dfs = func() {
-		if len(tmp) == n { // len(tmp)==k, k:=number of selected
-			copied := make([]int, n)
-			copy(copied, tmp)
-			ans = append(ans, copied)
+	var dfs func(permu []int)
+	dfs = func(permu []int) {
+		if len(permu) == n { // len(tmp)==k, k:=number of selected
+			cp := make([]int, n)
+			copy(cp, permu)
+			ans = append(ans, cp)
 			return
 		}
 
@@ -34,14 +33,10 @@ func permute(nums []int) [][]int { // from huahua
 				continue
 			}
 			used[i] = true
-
-			tmp = append(tmp, num)
-			dfs()
-			tmp = tmp[:len(tmp)-1]
-
+			dfs(append(permu, num))
 			used[i] = false
 		}
 	}
-	dfs()
+	dfs(make([]int, 0, n))
 	return ans
 }
