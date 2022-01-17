@@ -1,6 +1,6 @@
 package main
 
-func numIslands(grid [][]byte) int {
+func numIslands_d_l(grid [][]byte) int {
 	return newGrid(grid).numOfIslands()
 }
 

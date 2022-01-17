@@ -1,6 +1,8 @@
+// 2022.01.17
+
 package main
 
-func numIslandsDFS(grid [][]byte) int {
+func numIslands_d(grid [][]byte) int {
 	if len(grid) == 0 {
 		return 0
 	}
@@ -25,7 +27,7 @@ func numIslandsDFS(grid [][]byte) int {
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
 			num += int(grid[i][j] - '0') // increments upon 1
-			dfs(i, j)                    // removes its 1 and surrounding 1s
+			dfs(i, j)                    // removes the 1 and the surrounding 1s
 		}
 	}
 	return num
