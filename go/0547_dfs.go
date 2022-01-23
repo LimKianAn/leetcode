@@ -1,10 +1,9 @@
 package main
 
-func findCircleNumDFS(isConnected [][]int) int {
-	n := len(isConnected)
+func findCircleNum_d(isConnected [][]int) int {
 	var clearConnectedNodes func(i int)
 	clearConnectedNodes = func(i int) {
-		for j := 0; j < n; j++ {
+		for j := range isConnected {
 			if isConnected[i][j] == 0 {
 				continue
 			}
@@ -14,13 +13,13 @@ func findCircleNumDFS(isConnected [][]int) int {
 		}
 	}
 
-	num := 0
-	for i := 0; i < n; i++ {
-		if isConnected[i][i] == 0 { // connected with another node
+	ans := 0
+	for i := range isConnected {
+		if isConnected[i][i] == 0 { // connected with another node and cleared in the previous round
 			continue
 		}
-		num++
+		ans++
 		clearConnectedNodes(i)
 	}
-	return num
+	return ans
 }
