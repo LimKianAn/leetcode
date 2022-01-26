@@ -1,41 +1,36 @@
+// 2022.01.26
+
 package main
 
-func findRedundantConnectionDFS(edges [][]int) []int {
-	graph := map[int][]int{}
-	var connected func(u, v int, visited map[int]bool) bool
-	connected = func(u, v int, visited map[int]bool) bool {
+func findRedundantConnection_d(edges [][]int) []int {
+	connectedNodes := map[int][]int{}
+	var isConnected func(u, v int, isVisited map[int]bool) bool
+	isConnected = func(u, v int, isVisited map[int]bool) bool {
 		if u == v {
 			return true
 		}
-
-		if graph[u] == nil || graph[v] == nil {
+		if connectedNodes[u] == nil || connectedNodes[v] == nil {
 			return false
 		}
-
-		visited[u] = true
-		for _, neighbor := range graph[u] { // don't forget the slient index!
-			if visited[neighbor] {
+		isVisited[u] = true
+		for _, neighbor := range connectedNodes[u] {
+			if isVisited[neighbor] {
 				continue
 			}
-
-			if connected(neighbor, v, visited) {
+			if isConnected(neighbor, v, isVisited) {
 				return true
 			}
 		}
-
 		return false
 	}
 
 	for _, edge := range edges {
-		u := edge[0]
-		v := edge[1]
-
-		if connected(u, v, map[int]bool{}) {
+		u, v := edge[0], edge[1]
+		if isConnected(u, v, map[int]bool{}) {
 			return edge
 		}
-
-		graph[u] = append(graph[u], v)
-		graph[v] = append(graph[v], u)
+		connectedNodes[u] = append(connectedNodes[u], v)
+		connectedNodes[v] = append(connectedNodes[v], u)
 	}
 	return []int{}
 }
