@@ -1,23 +1,23 @@
 package main
 
-func findRedundantConnectionUnionFind(edges [][]int) []int {
+func findRedundantConnection_u(edges [][]int) []int {
 	n := len(edges)
-	parents := make([]int, n+1) // id in the range [1,n]
-	for i := range parents {
-		parents[i] = i // loops back, i.e. root
+	ancestors := make([]int, n+1) // id in the range [1,n]
+	for i := range ancestors {
+		ancestors[i] = i // loops back, i.e. root
 	}
 
 	var getRoot func(id int) int
 	getRoot = func(id int) int {
-		if parentID := parents[id]; parentID != id {
-			parents[id] = getRoot(parentID) // through 2 or 3 layers to the root
+		if ancestorID := ancestors[id]; ancestorID != id {
+			ancestors[id] = getRoot(ancestorID) // through 0 or 1 middle stop to the root, then path compression
 		}
-		return parents[id]
+		return ancestors[id]
 	}
 
 	ranks := make([]int, n+1)
-	var needsMerge func(i, j int) bool
-	needsMerge = func(i, j int) bool {
+	var needsUnification func(i, j int) bool
+	needsUnification = func(i, j int) bool {
 		rootI := getRoot(i)
 		rootJ := getRoot(j)
 		if rootI == rootJ {
@@ -25,11 +25,11 @@ func findRedundantConnectionUnionFind(edges [][]int) []int {
 		}
 
 		if ranks[rootI] > ranks[rootJ] {
-			parents[rootJ] = rootI
+			ancestors[rootJ] = rootI
 		} else if ranks[rootI] < ranks[rootJ] {
-			parents[rootI] = rootJ
+			ancestors[rootI] = rootJ
 		} else {
-			parents[rootJ] = rootI
+			ancestors[rootJ] = rootI
 			ranks[rootI]++ // increments the rank of the new root
 		}
 
@@ -37,7 +37,7 @@ func findRedundantConnectionUnionFind(edges [][]int) []int {
 	}
 
 	for _, edge := range edges {
-		if !needsMerge(edge[0], edge[1]) {
+		if !needsUnification(edge[0], edge[1]) {
 			return edge
 		}
 	}
