@@ -2,7 +2,11 @@
 
 package main
 
-import "sort"
+import (
+	"sort"
+
+	"github.com/LimKianAn/bst-count/bstcount"
+)
 
 func majorityElement_bm(nums []int) int { // Boyer-Moore, t O(n), sp O(1)
 	count := 0
@@ -19,6 +23,18 @@ func majorityElement_bm(nums []int) int { // Boyer-Moore, t O(n), sp O(1)
 		}
 	}
 	return candidate
+}
+
+func majorityElement_bst(nums []int) int { // bst, t O(nlogn), sp O(n)
+	n := len(nums)
+	bst := bstcount.New()
+	for _, num := range nums {
+		count := bst.Insert(num)
+		if count > n/2 {
+			return num
+		}
+	}
+	return -1
 }
 
 func majorityElement_ht(nums []int) int { // hash table, t O(n), sp O(1)
